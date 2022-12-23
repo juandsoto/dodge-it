@@ -37,10 +37,6 @@
     @apply rounded-lg w-full h-full bg-transparent;
   }
 
-  .crack {
-    @apply scale-x-125;
-  }
-
   .cell {
     @apply rounded-lg aspect-square bg-[#ADB0CC]/20;
   }
@@ -66,57 +62,5 @@
 
   .logo {
     @apply max-w-[5rem] max-h-[5rem] sm:max-w-[6rem] sm:max-h-[6rem];
-  }
-
-  .machine-blob,
-  .player-blob {
-    @apply w-24 h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 text-2xl flex items-center justify-center;
-    filter: drop-shadow(0px 0px 4px black);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  }
-
-  .machine-blob {
-    background-image: url(/machine-blob.svg);
-  }
-
-  .player {
-    @apply cursor-pointer;
-  }
-
-  .player-blob {
-    background-image: url(/player-blob.svg);
-  }
-
-  .selected {
-    scale: 0.9;
-  }
-
-  .text-important {
-    @apply text-primary text-2xl;
-  }
-
-  .valid__move {
-    @apply bg-gray cursor-pointer !important;
-  }
-
-  @media screen and (max-width: 430px) {
-    /* .cell {
-      @apply w-8 h-8;
-    } */
-    .machine-blob,
-    .player-blob {
-      @apply w-20 h-20;
-    }
-  }
-}
-
-@keyframes scale {
-  0% {
-    scale: 0.9;
-  }
-  100% {
-    scale: 1;
   }
 }
