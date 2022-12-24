@@ -1,9 +1,12 @@
-import { Grid, Logo, ScreenWrapper } from "components";
+import { Grid, Logo, Movements, ScreenWrapper } from "components";
 
 const Game = (): JSX.Element => {
   return (
     <ScreenWrapper>
       <div className="game">
+        <Grid />
+        <Movements />
+        {/* Absolute position */}
         <div className="absolute bottom-2 right-2">
           <Logo />
         </div>
@@ -24,7 +27,6 @@ const Game = (): JSX.Element => {
             </div>
           </div>
         </div>
-        <Grid />
       </div>
     </ScreenWrapper>
   );

@@ -17,9 +17,38 @@
   body {
     @apply text-light;
   }
+
+  img {
+    @apply w-full h-full;
+  }
 }
 
 @layer components {
+  .arrow {
+    @apply w-4 sm:w-8 md:w-12 aspect-square;
+    background-image: url(/arrow.svg);
+    filter: drop-shadow(-2px 2px 0px black);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+
+  .arrow.arrow--left {
+    @apply -rotate-90;
+  }
+
+  .arrow.arrow--up {
+    @apply rotate-0;
+  }
+
+  .arrow.arrow--right {
+    @apply rotate-90;
+  }
+
+  .arrow.arrow--down {
+    @apply rotate-180;
+  }
+
   .object {
     @apply rounded-md w-full h-full;
   }
@@ -41,7 +70,11 @@
   }
 
   .game {
-    @apply relative h-screen w-screen flex items-center justify-center;
+    @apply relative h-screen w-screen flex flex-col gap-2 items-center justify-center p-2;
+  }
+
+  .game > :first-child {
+    @apply flex-1;
   }
 
   .man {
@@ -81,6 +114,6 @@
   }
 
   .logo {
-    @apply max-w-[5rem] max-h-[5rem] sm:max-w-[6rem] sm:max-h-[6rem];
+    @apply max-w-[3.5rem] max-h-[3.5rem] sm:max-w-[6rem] sm:max-h-[6rem];
   }
 }
