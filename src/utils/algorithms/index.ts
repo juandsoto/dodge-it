@@ -1,4 +1,4 @@
-import { Matrix, OBJECTS, Position } from "types";
+import { Matrix, ObjectKeys, OBJECTS, ObjectValues, Position } from "types";
 
 export function createGame() {
   const game: Matrix = [
@@ -22,7 +22,7 @@ export function createGame() {
   return game;
 }
 
-function randomNumber(max: number = 10): number {
+export function randomNumber(max: number = 10): number {
   return Math.floor(Math.random() * max);
 }
 
@@ -37,4 +37,18 @@ export function findPlayer(game: Matrix): Position {
 
 export function outOfMap(coordinate: number) {
   return coordinate < 0 || coordinate > 9;
+}
+
+function isBlank(object: ObjectValues): boolean {
+  return object === OBJECTS.BLANK;
+}
+
+export function generateObstacle(game: Matrix): Position {
+  let x: number;
+  let y: number;
+  do {
+    x = randomNumber();
+    y = randomNumber();
+  } while (!isBlank(game[x][y]));
+  return { x, y };
 }
