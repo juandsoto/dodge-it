@@ -2,11 +2,13 @@ import { useReference } from "hooks";
 import { nanoid } from "nanoid";
 import { useEffect, useRef } from "react";
 import useStore from "store";
-import { findPlayer, outOfMap } from "utils/algorithms";
+import { getRandomObject } from "utils";
+import { findPlayer, generateObstacle, outOfMap, randomNumber } from "utils/algorithms";
 import Cell from "./Cell";
 
 const Grid = (): JSX.Element => {
-  const { game, playerPosition, setPlayerPosition, movePlayerTo, canMovePlayer, setCanMovePlayer } = useStore();
+  const { game, playerPosition, setPlayerPosition, movePlayerTo, canMovePlayer, setCanMovePlayer, updateGame } =
+    useStore();
   const { ref: canMovePlayerRef } = useReference(canMovePlayer);
   const { ref: playerPositionRef } = useReference(playerPosition);
 
@@ -27,6 +29,19 @@ const Grid = (): JSX.Element => {
 
     return () => clearTimeout(timeout);
   }, [canMovePlayer]);
+
+  useEffect(() => {
+    const minObstacles: number = 10;
+    let iterations: number = randomNumber(20) + minObstacles;
+    const interval = setInterval(() => {
+      if (iterations === 1) clearInterval(interval);
+      const randomObject = getRandomObject();
+      updateGame(null, generateObstacle(game), randomObject);
+      iterations--;
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const onMove = (e: KeyboardEvent) => {
     if (!["ArrowLeft", "ArrowUp", "ArrowRight", "ArrowDown"].includes(e.key)) return;
