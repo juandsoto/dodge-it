@@ -18,7 +18,6 @@ const useStore = create<Store>((set, get) => ({
   setPlayerPosition: position => set(state => ({ ...state, playerPosition: position })),
   movePlayerTo: (direction, cells) => {
     const { playerPosition, updateGame } = get();
-    if (outOfMap(playerPosition[direction] + cells)) return;
     updateGame(playerPosition, { ...playerPosition, [direction]: playerPosition[direction] + cells }, OBJECTS.PLAYER);
   },
   canMovePlayer: true,
