@@ -10,3 +10,7 @@ export const OBJECTS: Record<ObjectKeys, number> = {
 export type ObjectKeys = "PLAYER" | "GOAL" | "PERSON1" | "PERSON2" | "CRACK" | "BLANK";
 
 export type ObjectValues = typeof OBJECTS[keyof typeof OBJECTS];
+
+export type RandomObjects = Extract<ObjectKeys, "PERSON1" | "PERSON2" | "CRACK">;
+
+export type DynamicObject = Extract<ObjectKeys, "PERSON1" | "PERSON2">;
