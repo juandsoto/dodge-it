@@ -1,5 +1,5 @@
 import { mountStoreDevtool } from "simple-zustand-devtools";
-import { Matrix, ObjectKeys, OBJECTS, Position } from "types";
+import { DynamicObject, Matrix, ObjectKeys, OBJECTS, Position, RandomObjects } from "types";
 import { createGame } from "utils/algorithms";
 import create from "zustand";
 
@@ -10,31 +10,53 @@ interface Store {
   canMovePlayer: boolean;
   setCanMovePlayer: (canMove: boolean) => void;
   game: Matrix;
-  updateGame: (previous: Position | null, next: Position, object: ObjectKeys) => void;
+  updateGame: (prev: Position | null, next: Position, object: ObjectKeys | RandomObjects) => void;
+  dynamicObjects: Position[];
+  addDynamicObject: (position: Position) => void;
+  replaceDynamicObject: (prev: Position | null, next: Position) => void;
 }
 
 const useStore = create<Store>((set, get) => ({
   playerPosition: {} as Position,
-  setPlayerPosition: position => set(state => ({ ...state, playerPosition: position })),
+  setPlayerPosition: position => set({ playerPosition: position }),
   movePlayerTo: (direction, cells) => {
     const { playerPosition, updateGame } = get();
     updateGame(playerPosition, { ...playerPosition, [direction]: playerPosition[direction] + cells }, "PLAYER");
   },
   canMovePlayer: true,
-  setCanMovePlayer: canMove => set(state => ({ ...state, canMovePlayer: canMove })),
+  setCanMovePlayer: canMove => set({ canMovePlayer: canMove }),
+  dynamicObjects: [],
+  addDynamicObject: position => set(state => ({ ...state, dynamicObjects: [...state.dynamicObjects, position] })),
+  replaceDynamicObject: (prev, next) => {
+    const { dynamicObjects, updateGame, game } = get();
+    if (!prev) return;
+    const newDynamicObjects = dynamicObjects.map(pos => (pos.x === prev.x && pos.y === prev.y ? next : pos));
+    set({ dynamicObjects: newDynamicObjects });
+
+    const object = Object.keys(OBJECTS).find(
+      object => OBJECTS[object as ObjectKeys] === game[prev.x][prev.y]
+    ) as ObjectKeys;
+
+    updateGame(prev, next, object);
+  },
   game: createGame(),
-  updateGame: (previous, next, object) => {
+  updateGame: (prev, next, object) => {
     const newGame = [...get().game];
-    if (!previous) {
-      newGame[next.x][next.y] = OBJECTS[object];
+    if (!prev) {
+      newGame[next.x][next.y] = OBJECTS[object as ObjectKeys];
     } else {
-      newGame[previous.x][previous.y] = OBJECTS.BLANK;
-      newGame[next.x][next.y] = OBJECTS[object];
+      newGame[prev.x][prev.y] = OBJECTS.BLANK;
+      newGame[next.x][next.y] = OBJECTS[object as ObjectKeys];
     }
 
-    if (object === "PLAYER") return set(state => ({ ...state, game: newGame, playerPosition: next }));
+    if (object === "PLAYER") return set({ game: newGame, playerPosition: next });
 
-    return set(state => ({ ...state, game: newGame }));
+    const dynamicObjects: DynamicObject[] = ["PERSON1", "PERSON2"];
+    if (!prev && (dynamicObjects as string[]).includes(object)) {
+      get().addDynamicObject(next);
+    }
+
+    return set({ game: newGame });
   },
 }));
 
