@@ -54,11 +54,7 @@
   }
 
   .cell {
-    @apply rounded-md aspect-square bg-background;
-  }
-
-  .cell:not(:has(.object)) {
-    @apply border border-primary;
+    @apply rounded-md aspect-square bg-background shadow-md shadow-black;
   }
 
   .car {
@@ -77,10 +73,6 @@
     @apply flex-1;
   }
 
-  .man {
-    @apply bg-red-600 py-1;
-  }
-
   .tooltip {
     @apply absolute bottom-[50%] left-[70%] invisible bg-background text-light py-2 px-4 rounded-md flex flex-col gap-2;
   }
@@ -91,10 +83,6 @@
 
   .info:hover > .tooltip {
     @apply visible;
-  }
-
-  .crack {
-    @apply border border-dark;
   }
 
   .game__grid {
