@@ -12,6 +12,7 @@
 		"autoprefixer": "^10.4.13",
 		"framer-motion": "^7.6.12",
 		"nanoid": "^4.0.0",
+		"number-to-words": "^1.2.4",
 		"postcss": "^8.4.19",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
@@ -21,6 +22,7 @@
 		"zustand": "^4.1.4"
 	},
 	"devDependencies": {
+		"@types/number-to-words": "^1.2.1",
 		"@types/react": "^18.0.24",
 		"@types/react-dom": "^18.0.8",
 		"@vitejs/plugin-react": "^2.2.0",

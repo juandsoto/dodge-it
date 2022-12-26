@@ -8,6 +8,7 @@ module.exports = {
         primary: "#3379c2",
         dark: "#204F7F",
         light: "#ded",
+        danger: "#a51c30",
       },
     },
   },

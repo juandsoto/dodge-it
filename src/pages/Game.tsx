@@ -1,9 +1,10 @@
-import { CrashScreen, Grid, Logo, Movements, ScreenWrapper } from "components";
+import { CrashScreen, Grid, IsOverScreen, Logo, Movements, ScreenWrapper } from "components";
 
 const Game = (): JSX.Element => {
   return (
     <ScreenWrapper>
       <CrashScreen />
+      <IsOverScreen />
       <div className="game">
         <Grid />
         <Movements />
