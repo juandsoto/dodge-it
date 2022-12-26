@@ -1,4 +1,16 @@
-import { Matrix, ObjectKeys, OBJECTS, ObjectValues, Position } from "types";
+import { Matrix, OBJECTS, ObjectValues, Position } from "types";
+import { randomNumber } from "utils";
+
+function linearCongruentialGenerator() {
+  let xn = 7;
+  return (max = 10) => {
+    const number = (1 * xn + 7) % max;
+    xn = number;
+    return number;
+  };
+}
+
+export const LCG = linearCongruentialGenerator();
 
 export function createGame() {
   const game: Matrix = [
@@ -20,10 +32,6 @@ export function createGame() {
   game[goalPosition.x][goalPosition.y] = OBJECTS.GOAL;
 
   return game;
-}
-
-export function randomNumber(max: number = 10): number {
-  return Math.floor(Math.random() * max);
 }
 
 export function findPlayer(game: Matrix): Position {

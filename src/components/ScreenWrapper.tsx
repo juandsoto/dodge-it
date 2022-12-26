@@ -8,9 +8,10 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 
 const ScreenWrapper = ({ children, className, ...props }: Props): JSX.Element => {
   return (
-    <AnimatePresence mode="wait">
-      <div {...props} className="layout h-screen w-screen overflow-hidden">
+    <div {...props} className="layout h-screen w-screen overflow-hidden">
+      <AnimatePresence mode="wait">
         <motion.div
+          key="LAYOUT"
           className={["relative h-screen w-screen", className].join(" ")}
           variants={FADE_VARIANTS}
           initial="hidden"
@@ -19,8 +20,8 @@ const ScreenWrapper = ({ children, className, ...props }: Props): JSX.Element =>
         >
           {children}
         </motion.div>
-      </div>
-    </AnimatePresence>
+      </AnimatePresence>
+    </div>
   );
 };
 

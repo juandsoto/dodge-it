@@ -47,11 +47,11 @@ const Movements = () => {
         </div>
       </div>
       {/* small devices */}
-      <div className="lg:hidden flex gap-4 sm:gap-8">
+      <div className="lg:hidden bg-background/70 px-4 py-2 sm:py-0 rounded-full flex gap-4 sm:gap-8">
         <Movement className="arrow arrow--left" title="left" onClick={() => onMove("left")} />
         <Movement className="arrow arrow--up" title="up" onClick={() => onMove("up")} />
-        <Movement className="arrow arrow--right" title="right" onClick={() => onMove("right")} />
         <Movement className="arrow arrow--down" title="down" onClick={() => onMove("down")} />
+        <Movement className="arrow arrow--right" title="right" onClick={() => onMove("right")} />
       </div>
     </>
   );
