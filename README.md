@@ -1,6 +1,6 @@
 # Dodge it
 
-[Dodge It](dodge-it.vercel.app) is a game that simulates the situation when you are driving a car on the road and you want to get home.
+[Dodge It](https://dodge-it.vercel.app) is a game that simulates the situation when you are driving a car on the road and you want to get home.
 
 ## Description
 
