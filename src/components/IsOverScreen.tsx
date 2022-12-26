@@ -50,7 +50,7 @@ const IsOverScreen = () => {
           {crashes.crack > 0 && crashes.object > 0 && (
             <span className="text-md sm:text-xl text-primary">What a driver!</span>
           )}
-          <a className="bg-dark text-light rounded-md px-4 py-2" href="/game">
+          <a className="bg-dark text-light rounded-md px-4 py-2" href="/">
             Drive Again!
           </a>
         </div>
