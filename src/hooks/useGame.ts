@@ -1,9 +1,15 @@
 import { useReference } from "hooks";
 import { useEffect } from "react";
 import useStore from "store";
-import { getRandomMove, getRandomObject } from "utils";
-import { findPlayer, generateObstacle, outOfMap, randomNumber } from "utils/algorithms";
-import { OBJECTS_GENERATION_TIME, OBJECTS_UPDATE_TIME, PLAYER_FREEZE_TIME } from "utils/constants";
+import { getRandomMove, getRandomObject, randomNumber } from "utils";
+import { findPlayer, generateObstacle, outOfMap } from "utils/algorithms";
+import {
+  MAXIMUM_OF_OBSTACLES,
+  MINIMUM_OF_OBSTACLES,
+  OBJECTS_GENERATION_TIME,
+  OBJECTS_UPDATE_TIME,
+  PLAYER_FREEZE_TIME,
+} from "utils/constants";
 
 function useGame() {
   const {
@@ -29,8 +35,7 @@ function useGame() {
     /**
      * Obstacle generation
      */
-    const minObstacles: number = 8;
-    let iterations: number = randomNumber(18) + minObstacles;
+    let iterations: number = randomNumber(MAXIMUM_OF_OBSTACLES) + MINIMUM_OF_OBSTACLES;
     const generationInterval = setInterval(() => {
       if (iterations === 1) clearInterval(generationInterval);
       const randomObject = getRandomObject();

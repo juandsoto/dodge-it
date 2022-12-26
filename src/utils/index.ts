@@ -1,17 +1,21 @@
 import { Matrix, OBJECTS, Position, RandomObjects } from "types";
-import { randomNumber } from "./algorithms";
+import { LCG } from "./algorithms";
 
-export const randomObjects: RandomObjects[] = ["PERSON1", "PERSON2", "CRACK"];
+export const randomObjects: RandomObjects[] = ["PERSON1", "CRACK", "PERSON2"];
+
+export function randomNumber(max: number = 10): number {
+  return Math.floor(Math.random() * max);
+}
 
 export function getRandomObject(): RandomObjects {
-  return randomObjects[Math.floor(Math.random() * 3)];
+  return randomObjects[LCG(3)];
 }
 
 export function getRandomMove(game: Matrix, position: Position): Position | null {
   const moves = getMoves(position);
   const availableMoves = moves.filter(move => game[move.x][move.y] === OBJECTS.BLANK);
   if (!availableMoves.length) return null;
-  const index = randomNumber(availableMoves.length);
+  const index = LCG(availableMoves.length);
   return availableMoves[index];
 }
 
