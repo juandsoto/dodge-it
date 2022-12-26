@@ -33,6 +33,14 @@
     background-position: center;
   }
 
+  .loader {
+    background-image: url(/logo.png);
+    filter: drop-shadow(20px 20px 0px black);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
   .arrow.arrow--left {
     @apply -rotate-90;
   }
@@ -66,7 +74,7 @@
   }
 
   .game {
-    @apply relative h-screen w-screen flex flex-col gap-2 items-center justify-center p-2;
+    @apply relative h-screen w-screen flex flex-col gap-2 items-center justify-center p-2 sm:pb-0;
   }
 
   .game > :first-child {

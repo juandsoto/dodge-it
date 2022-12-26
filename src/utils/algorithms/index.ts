@@ -57,7 +57,6 @@ export function generateObstacle(game: Matrix): Position {
   do {
     x = randomNumber();
     y = randomNumber();
-    console.log({ x, y });
   } while (!isBlank(game[x][y]));
   return { x, y };
 }
