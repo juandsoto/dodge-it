@@ -37,6 +37,7 @@ function useGame() {
      */
     let iterations: number = randomNumber(MAXIMUM_OF_OBSTACLES) + MINIMUM_OF_OBSTACLES;
     const generationInterval = setInterval(() => {
+      if (isOverRef.current.hasWin) clearInterval(generationInterval);
       if (iterations === 1) clearInterval(generationInterval);
       const randomObject = getRandomObject();
       updateGame(null, generateObstacle(game), randomObject);
@@ -47,6 +48,7 @@ function useGame() {
      * Obstacle coordinates update
      */
     const updateInterval = setInterval(() => {
+      if (isOverRef.current.hasWin) clearInterval(updateInterval);
       let objectsToMoveQty = randomNumber(dynamicObjectsRef.current.length) + 1;
       let alreadyInMovement: number[] = [];
       do {
