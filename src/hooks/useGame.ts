@@ -8,6 +8,7 @@ import { OBJECTS_GENERATION_TIME, OBJECTS_UPDATE_TIME, PLAYER_FREEZE_TIME } from
 function useGame() {
   const {
     game,
+    isOver,
     playerPosition,
     setPlayerPosition,
     movePlayerTo,
@@ -20,6 +21,7 @@ function useGame() {
   const { ref: canMovePlayerRef } = useReference(canMovePlayer);
   const { ref: playerPositionRef } = useReference(playerPosition);
   const { ref: dynamicObjectsRef } = useReference(dynamicObjects);
+  const { ref: isOverRef } = useReference(isOver);
 
   useEffect(() => {
     setPlayerPosition(findPlayer(game));
@@ -27,8 +29,8 @@ function useGame() {
     /**
      * Obstacle generation
      */
-    const minObstacles: number = 5;
-    let iterations: number = randomNumber(5) + minObstacles;
+    const minObstacles: number = 8;
+    let iterations: number = randomNumber(18) + minObstacles;
     const generationInterval = setInterval(() => {
       if (iterations === 1) clearInterval(generationInterval);
       const randomObject = getRandomObject();
@@ -74,6 +76,7 @@ function useGame() {
   }, [canMovePlayer]);
 
   const onMove = (e: KeyboardEvent) => {
+    if (isOverRef.current.hasWin) return;
     if (!["ArrowLeft", "ArrowUp", "ArrowRight", "ArrowDown"].includes(e.key)) return;
     if (!canMovePlayerRef.current) return;
 
