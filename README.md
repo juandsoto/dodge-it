@@ -20,4 +20,10 @@ Positions will randomly be set for:
 
 [Dodge It](dodge-it.vercel.app) uses the [Linear Congruential Generator](https://en.wikipedia.org/wiki/Linear_congruential_generator) for determine the next obstacle to render as well as the people movement.
 
+## How to install
+
+1. Download the project
+2. Run `yarn` to install dependencies
+3. Run `yarn dev` to open the app. Console will tell you in what port the app is hosted.
+
 > All you need to do is to dodge it!
