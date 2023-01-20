@@ -20,4 +20,14 @@ Positions will randomly be set for:
 
 [Dodge It](dodge-it.vercel.app) uses the [Linear Congruential Generator](https://en.wikipedia.org/wiki/Linear_congruential_generator) for determine the next obstacle to render as well as the people movement.
 
+## How to use:
+
+In the project directory, you can run:
+
+### `npm install`
+
+Then run:
+
+### `npm run dev`
+
 > All you need to do is to dodge it!
